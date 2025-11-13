@@ -1,0 +1,82 @@
+{
+  "name": "zonaenglish-ambassador-landing",
+  "description": "Single-page React landing site for ZonaEnglish School Ambassador recruitment program",
+  "version": "1.0.0",
+  "language": "typescript",
+  "framework": "react",
+  "buildTool": "vite",
+  "projectType": "web-application",
+  "structure": {
+    "sourceDir": "src",
+    "mainFile": "src/App.tsx",
+    "configFiles": [
+      "vite.config.ts",
+      "tailwind.config.js",
+      "postcss.config.js",
+      "tsconfig.json",
+      "tsconfig.app.json",
+      "eslint.config.js"
+    ]
+  },
+  "conventions": {
+    "architecture": "single-file-component",
+    "styling": "tailwind-utility-first",
+    "stateManagement": "react-hooks",
+    "animations": "framer-motion",
+    "icons": "lucide-react"
+  },
+  "brandColors": {
+    "primary": "#03345c",
+    "accent": "#fcd547",
+    "description": "Navy blue primary, yellow accent for CTAs"
+  },
+  "patterns": {
+    "components": {
+      "cards": "rounded-3xl border shadow-sm with gradient backgrounds",
+      "buttons": "rounded-2xl with #fcd547 yellow for CTAs",
+      "spacing": "py-16 sections with max-w-7xl mx-auto",
+      "responsive": "Mobile-first with sm:, md:, lg: breakpoints"
+    },
+    "forms": {
+      "submission": "WhatsApp integration via wa.me API",
+      "validation": "HTML5 required fields, age 13-17 range"
+    }
+  },
+  "keyFiles": {
+    "App.tsx": "Main component file (~1000+ lines) - contains all UI sections, modals, forms",
+    "main.tsx": "React entry point with StrictMode",
+    "index.css": "Global styles and Tailwind imports",
+    "code.md": "Reference document - draft component code (not active)",
+    "tambahan.md": "Content requirements - mindset, tasks, schools list"
+  },
+  "developmentGuidelines": {
+    "architecture": "Keep everything in App.tsx unless explicitly asked to refactor",
+    "styling": "Use Tailwind utility classes, maintain brand colors",
+    "animations": "Use Framer Motion for transitions and modals",
+    "typeScript": "Strict mode enabled, no unused vars/params allowed",
+    "forms": "All forms submit to WhatsApp with formatted messages"
+  },
+  "testing": {
+    "suite": "none",
+    "approach": "manual",
+    "criticalPaths": [
+      "Form validation (required fields, age 13-17)",
+      "WhatsApp link generation with correct formatting",
+      "Modal open/close behavior",
+      "Mobile menu drawer",
+      "FAQ accordion animations",
+      "Responsive layout on mobile/tablet/desktop"
+    ]
+  },
+  "deployment": {
+    "buildCommand": "npm run build",
+    "outputDir": "dist",
+    "platform": "static-hosting",
+    "envVars": "none - all URLs hardcoded in constants"
+  },
+  "constants": {
+    "APPLY_URL": "https://bit.ly/ZonaEnglishAmbassador",
+    "IG_URL": "https://instagram.com/zonaenglish.id",
+    "WA_NUMBER": "6282188080688"
+  }
+}

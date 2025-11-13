@@ -1,0 +1,186 @@
+{
+  "version": "1.0",
+  "project": {
+    "name": "zonaenglish-ambassador-landing",
+    "type": "react-spa",
+    "description": "ZonaEnglish School Ambassador recruitment landing page - single-page React application"
+  },
+  "libraries": [
+    {
+      "name": "react",
+      "version": "19.1.1",
+      "purpose": "UI framework - core library",
+      "keyFeatures": ["StrictMode", "useState hooks", "event handlers"]
+    },
+    {
+      "name": "framer-motion",
+      "version": "12.23.24",
+      "purpose": "Animation library for modals, accordions, transitions",
+      "keyAPIs": [
+        "AnimatePresence",
+        "motion.div",
+        "initial/animate/exit props"
+      ],
+      "usage": "Modal transitions, FAQ accordion animations, slide-in mobile menu"
+    },
+    {
+      "name": "lucide-react",
+      "version": "0.546.0",
+      "purpose": "Icon library - all UI icons",
+      "usage": "Import individual icons: import { IconName } from 'lucide-react'",
+      "commonIcons": [
+        "ArrowRight",
+        "MessageCircle",
+        "Instagram",
+        "Menu",
+        "X",
+        "ChevronDown"
+      ]
+    },
+    {
+      "name": "tailwindcss",
+      "version": "3.4.18",
+      "purpose": "Utility-first CSS framework",
+      "customization": {
+        "colors": {
+          "navy": "#03345c",
+          "yellow": "#fcd547"
+        },
+        "patterns": {
+          "cards": "rounded-3xl border shadow-sm",
+          "buttons": "rounded-2xl",
+          "sections": "py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        }
+      }
+    },
+    {
+      "name": "vite",
+      "version": "7.1.7",
+      "purpose": "Build tool and dev server",
+      "config": "Standard React plugin setup in vite.config.ts",
+      "commands": {
+        "dev": "Development server on port 5173",
+        "build": "TypeScript check + production build",
+        "preview": "Preview production build"
+      }
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.3",
+      "purpose": "Type safety",
+      "strictMode": true,
+      "config": {
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true
+      }
+    }
+  ],
+  "architecture": {
+    "pattern": "single-file-component",
+    "mainFile": "src/App.tsx",
+    "fileSize": "~1000+ lines",
+    "components": {
+      "inline": ["BenefitCard", "Step", "TestiCard", "FAQItem"],
+      "sections": [
+        "Navbar (sticky)",
+        "Hero",
+        "About",
+        "Mindset Cards",
+        "Benefits",
+        "Premium Class Toggle",
+        "Ambassador Tasks",
+        "School/Campus Announcements",
+        "Registration Steps",
+        "Testimonials",
+        "FAQ Accordion",
+        "Footer"
+      ]
+    },
+    "stateManagement": {
+      "library": "react-useState",
+      "states": [
+        "showModal (boolean) - registration form modal",
+        "showMobileMenu (boolean) - mobile navigation drawer",
+        "selectedPremiumClass ('zonaenglish' | 'hira') - tab selection",
+        "formData (FormData interface) - registration form fields"
+      ]
+    },
+    "routing": "none - anchor-based navigation (#about, #benefits, etc.)"
+  },
+  "integrations": {
+    "whatsapp": {
+      "api": "wa.me URL scheme",
+      "number": "6282188080688",
+      "purpose": "Form submissions send formatted messages to WhatsApp",
+      "flow": "User fills form → Format message → Open WhatsApp link → Reset form"
+    },
+    "social": {
+      "instagram": "https://instagram.com/zonaenglish.id",
+      "applyUrl": "https://bit.ly/ZonaEnglishAmbassador"
+    }
+  },
+  "codePatterns": {
+    "eventHandlers": {
+      "multiInput": "Use React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>",
+      "example": "const handleInputChange = (e: React.ChangeEvent<...>) => { const { name, value } = e.target; ... }"
+    },
+    "animations": {
+      "modal": "AnimatePresence + motion.div with scale/opacity transitions",
+      "accordion": "AnimatePresence + motion.div with height: 0 to auto",
+      "mobileMenu": "AnimatePresence + motion.div with x: 100% to 0"
+    },
+    "styling": {
+      "brandColors": "Use #03345c for navy, #fcd547 for yellow CTAs",
+      "gradients": "from-sky-* to-blue-* or from-#03345c/5 to-white",
+      "cards": "rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+    }
+  },
+  "developmentWorkflow": {
+    "setup": "npm install",
+    "dev": "npm run dev (opens http://localhost:5173)",
+    "lint": "npm run lint (ESLint with flat config)",
+    "build": "npm run build (TypeScript compile + Vite build → dist/)",
+    "preview": "npm run preview (test production build locally)"
+  },
+  "commonTasks": {
+    "addSection": {
+      "steps": [
+        "Insert <section> in App.tsx between existing sections",
+        "Use className='bg-white' or 'bg-sky-50/60' for alternating backgrounds",
+        "Wrap content in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16",
+        "Add anchor link to navbar if needed"
+      ]
+    },
+    "addFAQ": {
+      "steps": [
+        "Find FAQ section in App.tsx",
+        "Add <FAQItem question='...' answer='...' />",
+        "Accordion animation handled automatically by FAQItem component"
+      ]
+    },
+    "updateConstants": {
+      "location": "Top of App.tsx",
+      "variables": ["APPLY_URL", "IG_URL", "WA_NUMBER"]
+    },
+    "addIcon": {
+      "steps": [
+        "Import from lucide-react: import { IconName } from 'lucide-react'",
+        "Use inline: <IconName size={18} />"
+      ]
+    }
+  },
+  "constraints": {
+    "architecture": "Keep all code in App.tsx unless explicitly asked to refactor",
+    "noTests": "No test suite configured - manual testing only",
+    "noEnvVars": "All URLs and constants hardcoded in App.tsx",
+    "noCodeSplitting": "Single bundle - no lazy loading or route-based splitting",
+    "assets": "PNG images in src/assets/ exist but not imported (placeholders used in code)"
+  },
+  "troubleshooting": {
+    "buildErrors": "Check TypeScript strict mode compliance - no unused vars/params allowed",
+    "stylingIssues": "Ensure Tailwind classes are correct, check brand colors #03345c and #fcd547",
+    "animationBugs": "Verify Framer Motion AnimatePresence wraps animated elements, check initial/animate/exit props",
+    "formIssues": "WhatsApp message formatting - ensure template literals are correct, URL encoding applied"
+  }
+}

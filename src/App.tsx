@@ -20,6 +20,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import "./App.css";
+import ambassadorPhoto from "./assets/Zona-English-Ambassador.png";
 
 // URLs
 const APPLY_URL = "https://bit.ly/ZonaEnglishAmbassador";
@@ -286,12 +287,14 @@ function App() {
             className="relative"
           >
             <div className="relative mx-auto max-w-md">
-              <div className="aspect-[4/5] w-full rounded-3xl bg-gradient-to-br from-sky-200 via-white to-blue-100 p-1 shadow-lg">
-                <div className="h-full w-full rounded-3xl bg-white p-5 grid grid-rows-6">
-                  <div className="row-span-3 rounded-2xl bg-slate-100 flex items-center justify-center">
-                    <div className="text-slate-400 text-sm">
-                      Photo: 3 Teens (Mic / Book / Vlog)
-                    </div>
+              <div className="w-full rounded-3xl bg-gradient-to-br from-sky-200 via-white to-blue-100 p-1 shadow-lg">
+                <div className="w-full rounded-3xl bg-white p-5">
+                  <div className="rounded-2xl overflow-hidden">
+                    <img
+                      src={ambassadorPhoto}
+                      alt="ZonaEnglish Ambassador - Students learning public speaking, leadership, and content creation"
+                      className="w-full h-auto"
+                    />
                   </div>
                   <div className="row-span-2 grid grid-cols-3 gap-3 mt-4">
                     <div className="rounded-2xl bg-sky-50 border border-sky-100 p-3 flex flex-col items-center text-center">
@@ -872,7 +875,7 @@ function App() {
           </h2>
           <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
             Jadilah Ambassador ZonaEnglish di sekolah/kampusmu. Setiap institusi
-            akan memilih 2–5 Ambassador terbaik.
+            akan memilih 1–3 Ambassador terbaik.
           </p>
 
           <div className="mt-10 grid md:grid-cols-2 gap-6">
@@ -884,7 +887,7 @@ function App() {
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-slate-900">
-                    2–5 Ambassador per sekolah/kampus
+                    1–3 Ambassador per sekolah/kampus
                   </h4>
                   <p className="text-sm text-slate-600 mt-1">
                     Setiap institusi akan memilih kandidat terbaik sebagai
@@ -1181,13 +1184,13 @@ function App() {
             {/* FAQ-KE-5 */}
             <FAQItem
               question="Setelah daftar, prosesnya gimana?"
-              answer="Setelah daftar, kamu akan dapat undangan untuk Interview Day. Di sana kamu kenalan sama tim dan peserta lain, terus ikut games seru! Santai aja, ini bukan interview formal kok, lebih ke casual chat."
+              answer="Setelah daftar, kamu akan dapat undangan untuk Interview Day. Di sana kamu kenalan sama tim dan peserta lain! Santai aja, ini bukan interview formal kok, lebih ke casual chat."
             />
 
             {/* FAQ-KE-6 */}
             <FAQItem
               question="Kalau dari luar Makassar bisa ikut nggak?"
-              answer="Untuk saat ini programnya khusus untuk siswa SMP/SMA yang bersekolah di Makassar ya. Tapi stay tuned, siapa tau nanti ekspansi ke kota lain!"
+              answer="Khusus untuk luar makassar, bisa juga kok, tapi melalui daring/online yah"
             />
           </div>
 
