@@ -25,7 +25,7 @@ import ambassadorPhoto from "./assets/Zona-English-Ambassador.png";
 // URLs
 const APPLY_URL = "https://bit.ly/ZonaEnglishAmbassador";
 const IG_URL = "https://instagram.com/zonaenglish.id";
-const WA_NUMBER = "6282188080688";
+const WA_NUMBER = "6282399627276";
 
 // Form Data Interface
 interface FormData {
