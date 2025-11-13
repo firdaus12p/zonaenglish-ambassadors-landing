@@ -23,7 +23,6 @@ import "./App.css";
 import ambassadorPhoto from "./assets/Zona-English-Ambassador.png";
 
 // URLs
-const APPLY_URL = "https://bit.ly/ZonaEnglishAmbassador";
 const IG_URL = "https://instagram.com/zonaenglish.id";
 const WA_NUMBER = "6282399627276";
 
@@ -338,7 +337,13 @@ function App() {
         id="about"
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
       >
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="grid lg:grid-cols-2 gap-10 items-start"
+        >
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Apa itu ZonaEnglish School Ambassador?
@@ -395,23 +400,53 @@ function App() {
               Daftar Sekarang <ArrowRight size={18} />
             </button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* SIAPA YANG KAMI CARI */}
       <section className="bg-gradient-to-br from-[#03345c]/5 to-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl sm:text-3xl font-bold text-slate-900 text-center"
+          >
             🧠 Siapa yang Kami Cari (Mindset)
-          </h2>
-          <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-3 text-slate-600 text-center max-w-3xl mx-auto"
+          >
             Tidak harus sudah mahir bahasa Inggris. Yang kami cari adalah
             pelajar yang punya keinginan besar untuk belajar dan berkembang.
-          </p>
+          </motion.p>
 
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {/* Mindset Card 1 */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300"
+            >
               <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center mb-4 text-xl">
                 🔥
               </div>
@@ -422,10 +457,16 @@ function App() {
                 Punya tekad kuat untuk bisa Bahasa Inggris dan berkomunikasi
                 dengan dunia.
               </p>
-            </div>
+            </motion.div>
 
             {/* Mindset Card 2 */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300"
+            >
               <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center mb-4 text-xl">
                 🌟
               </div>
@@ -436,10 +477,16 @@ function App() {
                 Ingin menjadi cerdas dan leader masa depan yang menginspirasi
                 banyak orang.
               </p>
-            </div>
+            </motion.div>
 
             {/* Mindset Card 3 */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300"
+            >
               <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center mb-4 text-xl">
                 📚
               </div>
@@ -448,10 +495,16 @@ function App() {
                 Senang belajar hal baru dan berusaha melakukan yang baik &
                 terbaik.
               </p>
-            </div>
+            </motion.div>
 
             {/* Mindset Card 4 */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300"
+            >
               <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center mb-4 text-xl">
                 🚀
               </div>
@@ -460,10 +513,16 @@ function App() {
                 Siap mengikuti perkembangan teknologi agar tidak tertinggal
                 zaman.
               </p>
-            </div>
+            </motion.div>
 
             {/* Mindset Card 5 */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300 sm:col-span-2 lg:col-span-1">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300 sm:col-span-2 lg:col-span-1"
+            >
               <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center mb-4 text-xl">
                 🤝
               </div>
@@ -472,21 +531,45 @@ function App() {
                 Ingin berdampak untuk teman, sekolah, komunitas—hingga nasional
                 & internasional.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* BENEFITS */}
       <section id="benefits" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl sm:text-3xl font-bold text-slate-900 text-center"
+          >
             Keuntungan Bergabung
-          </h2>
-          <p className="mt-3 text-slate-600 text-center max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-3 text-slate-600 text-center max-w-2xl mx-auto"
+          >
             Level up kemampuanmu dan jadilah inspirasi di sekolah.
-          </p>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          </motion.p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.08,
+                },
+              },
+            }}
+            className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
             <BenefitCard
               icon={<Award />}
               title="Sertifikat Resmi"
@@ -517,7 +600,7 @@ function App() {
               title="Leadership"
               desc="Belajar teamwork & project."
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1089,11 +1172,29 @@ function App() {
         id="apply"
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
       >
-        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl sm:text-3xl font-bold text-slate-900 text-center"
+        >
           Syarat & Cara Daftar
-        </h2>
-        <div className="mt-10 grid lg:grid-cols-2 gap-8 items-start">
-          <ol className="space-y-4">
+        </motion.h2>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="mt-10 max-w-5xl mx-auto"
+        >
+          <ol className="grid md:grid-cols-2 gap-6">
             <Step n={1} title="Siswa aktif SMP/SMA di Makassar" />
             <Step
               n={2}
@@ -1105,23 +1206,15 @@ function App() {
             />
             <Step n={4} title="Tunggu undangan Interview Day" />
           </ol>
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="font-semibold text-slate-900">
-              QR Code Pendaftaran
-            </h3>
-            <div className="mt-4 aspect-square w-full rounded-2xl bg-slate-100 grid place-items-center">
-              <p className="text-slate-400 text-sm">
-                (Tempelkan QR menuju {APPLY_URL})
-              </p>
-            </div>
+          <div className="mt-10 text-center">
             <button
               onClick={() => setShowModal(true)}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#fcd547] px-6 py-3 text-slate-900 font-semibold shadow hover:shadow-lg transition-shadow"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#fcd547] px-8 py-4 text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-shadow"
             >
               Daftar Sekarang <ArrowRight size={18} />
             </button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* TESTIMONIALS */}
@@ -1423,24 +1516,37 @@ function BenefitCard({
   desc: string;
 }) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+    >
       <div className="h-10 w-10 rounded-2xl bg-[#fcd547]/20 text-[#03345c] grid place-items-center">
         {icon}
       </div>
       <h3 className="mt-4 font-semibold text-slate-900">{title}</h3>
       <p className="text-sm text-slate-600 mt-1">{desc}</p>
-    </div>
+    </motion.div>
   );
 }
 
 function Step({ n, title }: { n: number; title: string }) {
   return (
-    <li className="flex items-start gap-4">
+    <motion.li
+      variants={{
+        hidden: { opacity: 0, x: -20 },
+        visible: { opacity: 1, x: 0 },
+      }}
+      className="flex items-start gap-4"
+    >
       <div className="mt-1 h-8 w-8 shrink-0 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center font-bold">
         {n}
       </div>
       <p className="text-slate-700">{title}</p>
-    </li>
+    </motion.li>
   );
 }
 
@@ -1454,7 +1560,14 @@ function TestiCard({
   text: string;
 }) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+    >
       <div className="flex items-center gap-3">
         <div className="h-10 w-10 rounded-full bg-sky-200" />
         <div>
@@ -1463,7 +1576,7 @@ function TestiCard({
         </div>
       </div>
       <p className="mt-3 text-slate-700 text-sm">"{text}"</p>
-    </div>
+    </motion.div>
   );
 }
 

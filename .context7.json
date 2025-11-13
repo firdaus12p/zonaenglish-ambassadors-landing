@@ -111,7 +111,7 @@
   "integrations": {
     "whatsapp": {
       "api": "wa.me URL scheme",
-      "number": "6282188080688",
+      "number": "6282399627276",
       "purpose": "Form submissions send formatted messages to WhatsApp",
       "flow": "User fills form → Format message → Open WhatsApp link → Reset form"
     },
