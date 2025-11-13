@@ -1,0 +1,1505 @@
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  Mic,
+  BookOpen,
+  Smartphone,
+  Award,
+  Megaphone,
+  Gift,
+  GraduationCap,
+  Star,
+  CalendarClock,
+  MapPin,
+  Clock,
+  Instagram,
+  X,
+  MessageCircle,
+  Menu,
+  ChevronDown,
+} from "lucide-react";
+import "./App.css";
+
+// URLs
+const APPLY_URL = "https://bit.ly/ZonaEnglishAmbassador";
+const IG_URL = "https://instagram.com/zonaenglish.id";
+const WA_NUMBER = "6282188080688";
+
+// Form Data Interface
+interface FormData {
+  nama: string;
+  alamat: string;
+  usia: string;
+  jenisKelamin: string;
+  sekolah: string;
+  instagram: string;
+  alasan: string;
+}
+
+function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [selectedPremiumClass, setSelectedPremiumClass] = useState<
+    "zonaenglish" | "hira"
+  >("zonaenglish");
+  const [formData, setFormData] = useState<FormData>({
+    nama: "",
+    alamat: "",
+    usia: "",
+    jenisKelamin: "",
+    sekolah: "",
+    instagram: "",
+    alasan: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Format message for WhatsApp
+    const message = `*Pendaftaran ZonaEnglish School Ambassador 2025*
+
+📝 *Nama:* ${formData.nama}
+📍 *Alamat:* ${formData.alamat}
+🎂 *Usia:* ${formData.usia} tahun
+👤 *Jenis Kelamin:* ${formData.jenisKelamin}
+🏫 *Sekolah:* ${formData.sekolah}
+📱 *Instagram:* @${formData.instagram}
+💭 *Alasan Masuk:* ${formData.alasan}`;
+
+    const whatsappUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+
+    // Reset form and close modal
+    setFormData({
+      nama: "",
+      alamat: "",
+      usia: "",
+      jenisKelamin: "",
+      sekolah: "",
+      instagram: "",
+      alasan: "",
+    });
+    setShowModal(false);
+  };
+
+  const openWhatsApp = () => {
+    const message =
+      "Halo, saya ingin bertanya tentang program ZonaEnglish School Ambassador 2025";
+    window.open(
+      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-b from-sky-50 via-white to-white text-slate-800">
+      {/* NAVBAR */}
+      <nav className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-sm" />
+            <div className="leading-tight">
+              <p className="font-bold text-slate-900">ZonaEnglish</p>
+              <p className="text-xs text-slate-500">Ambassador 2025 s.d 2026</p>
+            </div>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#about" className="hover:text-sky-700">
+              Tentang
+            </a>
+            <a href="#benefits" className="hover:text-sky-700">
+              Keuntungan
+            </a>
+            <a href="#apply" className="hover:text-sky-700">
+              Cara Daftar
+            </a>
+            <a href="#testi" className="hover:text-sky-700">
+              Testimoni
+            </a>
+          </div>
+
+          {/* Desktop Button */}
+          <button
+            onClick={() => setShowModal(true)}
+            className="hidden md:inline-flex items-center gap-2 rounded-2xl bg-[#fcd547] px-4 py-2 text-slate-900 font-semibold shadow hover:shadow-md transition-shadow"
+          >
+            Daftar Sekarang <ArrowRight size={18} />
+          </button>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setShowMobileMenu(true)}
+            className="md:hidden h-10 w-10 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center"
+            aria-label="Open menu"
+          >
+            <Menu size={20} className="text-slate-700" />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {showMobileMenu && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowMobileMenu(false)}
+              className="fixed inset-0 z-50 bg-black/50 md:hidden"
+            />
+
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-64 bg-white shadow-2xl md:hidden"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-slate-200">
+                <h3 className="font-bold text-slate-900">Menu</h3>
+                <button
+                  onClick={() => setShowMobileMenu(false)}
+                  className="h-8 w-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center"
+                  aria-label="Close menu"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <nav className="flex flex-col p-4 space-y-1">
+                <a
+                  href="#about"
+                  onClick={() => setShowMobileMenu(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium"
+                >
+                  Tentang
+                </a>
+                <a
+                  href="#benefits"
+                  onClick={() => setShowMobileMenu(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium"
+                >
+                  Keuntungan
+                </a>
+                <a
+                  href="#apply"
+                  onClick={() => setShowMobileMenu(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium"
+                >
+                  Cara Daftar
+                </a>
+                <a
+                  href="#testi"
+                  onClick={() => setShowMobileMenu(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium"
+                >
+                  Testimoni
+                </a>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* HERO */}
+      <header className="relative overflow-hidden bg-[#03345c]">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#fcd547] blur-3xl opacity-20" />
+          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#fcd547] blur-3xl opacity-20" />
+        </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#fcd547]/20 px-4 py-2 text-[#fcd547] text-sm font-bold">
+              <span className="text-[#ffff]">ZONA ENGLISH X</span>HIRA ACADEMY
+            </span>
+            <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+              Zona English Ambassador - School & Campus
+            </h1>
+            <h1 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+              <span className="text-[#fcd547]">
+                Be the Face of English Lead the future
+              </span>{" "}
+            </h1>
+            <p className="mt-4 text-base sm:text-lg text-white/90 max-w-xl">
+              Zona English Ambassador - School & Campus
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <button
+                onClick={() => setShowModal(true)}
+                className="inline-flex justify-center items-center gap-2 rounded-2xl bg-[#fcd547] px-6 py-3 text-slate-900 font-semibold shadow hover:shadow-lg transition-shadow"
+              >
+                Daftar Sekarang <ArrowRight size={18} />
+              </button>
+              <a
+                href={IG_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex justify-center items-center gap-2 rounded-2xl border border-white/30 px-6 py-3 font-semibold text-white hover:border-white/50 hover:bg-white/10 transition-colors"
+              >
+                <Instagram size={18} /> Follow @zonaenglish.id
+              </a>
+              <button
+                onClick={openWhatsApp}
+                className="inline-flex justify-center items-center gap-2 rounded-2xl border border-green-400/30 bg-green-500/10 px-6 py-3 font-semibold text-green-300 hover:bg-green-500/20 transition-colors"
+              >
+                <MessageCircle size={18} /> WhatsApp
+              </button>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
+              <div className="inline-flex items-center gap-2">
+                <CalendarClock size={16} /> Pendaftaran ditutup 25 Oktober 2025
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <MapPin size={16} /> Makassar
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <Clock size={16} /> 09.00–17.00 WITA
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative"
+          >
+            <div className="relative mx-auto max-w-md">
+              <div className="aspect-[4/5] w-full rounded-3xl bg-gradient-to-br from-sky-200 via-white to-blue-100 p-1 shadow-lg">
+                <div className="h-full w-full rounded-3xl bg-white p-5 grid grid-rows-6">
+                  <div className="row-span-3 rounded-2xl bg-slate-100 flex items-center justify-center">
+                    <div className="text-slate-400 text-sm">
+                      Photo: 3 Teens (Mic / Book / Vlog)
+                    </div>
+                  </div>
+                  <div className="row-span-2 grid grid-cols-3 gap-3 mt-4">
+                    <div className="rounded-2xl bg-sky-50 border border-sky-100 p-3 flex flex-col items-center text-center">
+                      <Mic className="mb-2" />
+                      <p className="text-xs font-semibold">Public Speaking</p>
+                      <p className="text-[10px] text-slate-500">
+                        Latihan tampil
+                      </p>
+                    </div>
+                    <div className="rounded-2xl bg-indigo-50 border border-indigo-100 p-3 flex flex-col items-center text-center">
+                      <BookOpen className="mb-2" />
+                      <p className="text-xs font-semibold">Leadership</p>
+                      <p className="text-[10px] text-slate-500">Team project</p>
+                    </div>
+                    <div className="rounded-2xl bg-violet-50 border border-violet-100 p-3 flex flex-col items-center text-center">
+                      <Smartphone className="mb-2" />
+                      <p className="text-xs font-semibold">Content</p>
+                      <p className="text-[10px] text-slate-500">Vlog & IG</p>
+                    </div>
+                  </div>
+                  <div className="row-span-1 mt-4 flex items-center justify-between">
+                    <div className="text-xs text-slate-500">
+                      Official School Ambassador 2025
+                    </div>
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#03345c] hover:text-[#fcd547] transition-colors"
+                    >
+                      Daftar <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </header>
+
+      {/* ABOUT */}
+      <section
+        id="about"
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+      >
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+              Apa itu ZonaEnglish School Ambassador?
+            </h2>
+            <p className="mt-4 text-slate-600">
+              Program resmi bagi pelajar SMP & SMA di Makassar untuk menjadi
+              duta Bahasa Inggris di sekolah. Kamu akan mendapat pelatihan{" "}
+              <span className="font-semibold">leadership</span>,{" "}
+              <span className="font-semibold">public speaking</span>, dan
+              pengalaman berharga untuk masa depan.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="rounded-full bg-sky-100 text-sky-700 text-xs font-bold px-3 py-1">
+                Youthful
+              </div>
+              <div className="rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1">
+                Inspiratif
+              </div>
+              <div className="rounded-full bg-violet-100 text-violet-700 text-xs font-bold px-3 py-1">
+                Kompetitif
+              </div>
+              <div className="rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1">
+                Islamic-friendly
+              </div>
+            </div>
+          </div>
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="font-semibold text-slate-900">Info Singkat</h3>
+            <ul className="mt-4 space-y-3 text-slate-600 text-sm">
+              <li className="flex items-center gap-3">
+                <CalendarClock size={18} className="text-sky-700" />{" "}
+                Pendaftaran: s.d.{" "}
+                <span className="font-semibold">25 Oktober 2025</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin size={18} className="text-sky-700" /> Lokasi:{" "}
+                <span className="font-semibold">
+                  ZonaEnglish Center, Makassar
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Clock size={18} className="text-sky-700" /> Waktu: 09.00 –
+                17.00 WITA
+              </li>
+              <li className="flex items-center gap-3">
+                <Megaphone size={18} className="text-sky-700" /> Target: Siswa
+                SMP–SMA (13–17 tahun)
+              </li>
+            </ul>
+            <button
+              onClick={() => setShowModal(true)}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#fcd547] px-6 py-3 text-slate-900 font-semibold shadow hover:shadow-lg transition-shadow"
+            >
+              Daftar Sekarang <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* SIAPA YANG KAMI CARI */}
+      <section className="bg-gradient-to-br from-[#03345c]/5 to-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            🧠 Siapa yang Kami Cari (Mindset)
+          </h2>
+          <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
+            Tidak harus sudah mahir bahasa Inggris. Yang kami cari adalah
+            pelajar yang punya keinginan besar untuk belajar dan berkembang.
+          </p>
+
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Mindset Card 1 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center mb-4 text-xl">
+                🔥
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">
+                Punya Tekad Kuat
+              </h3>
+              <p className="text-sm text-slate-600">
+                Punya tekad kuat untuk bisa Bahasa Inggris dan berkomunikasi
+                dengan dunia.
+              </p>
+            </div>
+
+            {/* Mindset Card 2 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center mb-4 text-xl">
+                🌟
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">
+                Leader Masa Depan
+              </h3>
+              <p className="text-sm text-slate-600">
+                Ingin menjadi cerdas dan leader masa depan yang menginspirasi
+                banyak orang.
+              </p>
+            </div>
+
+            {/* Mindset Card 3 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center mb-4 text-xl">
+                📚
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Senang Belajar</h3>
+              <p className="text-sm text-slate-600">
+                Senang belajar hal baru dan berusaha melakukan yang baik &
+                terbaik.
+              </p>
+            </div>
+
+            {/* Mindset Card 4 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center mb-4 text-xl">
+                🚀
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Future Ready</h3>
+              <p className="text-sm text-slate-600">
+                Siap mengikuti perkembangan teknologi agar tidak tertinggal
+                zaman.
+              </p>
+            </div>
+
+            {/* Mindset Card 5 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300 sm:col-span-2 lg:col-span-1">
+              <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center mb-4 text-xl">
+                🤝
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Berdampak Luas</h3>
+              <p className="text-sm text-slate-600">
+                Ingin berdampak untuk teman, sekolah, komunitas—hingga nasional
+                & internasional.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFITS */}
+      <section id="benefits" className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            Keuntungan Bergabung
+          </h2>
+          <p className="mt-3 text-slate-600 text-center max-w-2xl mx-auto">
+            Level up kemampuanmu dan jadilah inspirasi di sekolah.
+          </p>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <BenefitCard
+              icon={<Award />}
+              title="Sertifikat Resmi"
+              desc="Gelar Youth Ambassador dari ZonaEnglish."
+            />
+            <BenefitCard
+              icon={<Megaphone />}
+              title="Pelatihan Speaking"
+              desc="Coaching tampil & percaya diri."
+            />
+            <BenefitCard
+              icon={<Gift />}
+              title="Merchandise Eksklusif"
+              desc="Dapatkan goodies & akses event."
+            />
+            <BenefitCard
+              icon={<GraduationCap />}
+              title="Beasiswa & Magang"
+              desc="Peluang internship & scholarship."
+            />
+            <BenefitCard
+              icon={<Star />}
+              title="Exposure Media"
+              desc="Kesempatan tampil di IG ZonaEnglish."
+            />
+            <BenefitCard
+              icon={<BookOpen />}
+              title="Leadership"
+              desc="Belajar teamwork & project."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* PREMIUM CLASS ACCESS */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            🎓 Akses Gratis Premium Class Senilai Puluhan Juta Rupiah
+          </h2>
+
+          {/* Toggle Switch */}
+          <div className="mt-8 flex justify-center">
+            <div className="inline-flex rounded-2xl bg-slate-100 p-1">
+              <button
+                onClick={() => setSelectedPremiumClass("zonaenglish")}
+                className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all ${
+                  selectedPremiumClass === "zonaenglish"
+                    ? "bg-[#fcd547] text-slate-900 shadow-md"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                ZonaEnglish
+              </button>
+              <button
+                onClick={() => setSelectedPremiumClass("hira")}
+                className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all ${
+                  selectedPremiumClass === "hira"
+                    ? "bg-[#fcd547] text-slate-900 shadow-md"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                Hira Academy
+              </button>
+            </div>
+          </div>
+
+          {/* Content dengan Animasi */}
+          <AnimatePresence mode="wait">
+            {selectedPremiumClass === "zonaenglish" ? (
+              <motion.div
+                key="zonaenglish"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="mt-10"
+              >
+                <div className="rounded-3xl border border-[#03345c]/20 bg-gradient-to-br from-[#03345c]/5 to-white p-6 sm:p-8 shadow-sm">
+                  <div className="flex items-start gap-3 mb-6">
+                    <div className="h-12 w-12 rounded-2xl bg-[#fcd547]/20 text-[#03345c] grid place-items-center shrink-0">
+                      <GraduationCap size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900">
+                        Akses Gratis Premium Class dari ZonaEnglish
+                      </h3>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Akses penuh ke seluruh fasilitas pembelajaran premium
+                        dengan nilai manfaat jutaan rupiah
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* Item 1 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                        1
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-slate-900">
+                          Kelas Premium ZonaEnglish
+                        </h4>
+                        <p className="text-base font-bold text-slate-900 mt-1">
+                          Senilai Rp 400.000/bulan
+                        </p>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Mencakup speaking, grammar, dan project class.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 2 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                        2
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-slate-900">
+                          Akses ke Program ZE Land, ZE Camp, dan ZE Trip
+                        </h4>
+                        <p className="text-base font-bold text-slate-900 mt-1">
+                          Hingga Rp 5.000.000 per peserta
+                        </p>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Paket pelatihan dan pengalaman belajar yang tak
+                          terlupakan.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 3 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                        3
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-slate-900">
+                          Kelas Speaking Offline & Online
+                        </h4>
+                        <p className="text-base font-bold text-slate-900 mt-1">
+                          Senilai Rp 600.000/bulan
+                        </p>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Untuk memperkuat kemampuan komunikasi global.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 4 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                        4
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-slate-900">
+                          Akses Event & Kompetisi Skala Regional, Nasional, dan
+                          Internasional
+                        </h4>
+                        <p className="text-base font-bold text-slate-900 mt-1">
+                          Hingga Rp 20.000.000 per tahun
+                        </p>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Ambassador terpilih akan menjadi official
+                          representative ZonaEnglish untuk mengikuti event,
+                          workshop, dan lomba di berbagai level. Setiap
+                          partisipasi disertai dengan sertifikat resmi dari
+                          penyelenggara, ZonaEnglish, dan Hira Academy.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="hira"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="mt-10"
+              >
+                <div className="rounded-3xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-6 sm:p-8 shadow-sm">
+                  <div className="flex items-start gap-3 mb-6">
+                    <div className="h-12 w-12 rounded-2xl bg-indigo-100 text-indigo-700 grid place-items-center shrink-0">
+                      <GraduationCap size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900">
+                        Akses Gratis Premium Class dari Hira Academy
+                      </h3>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Kelas eksklusif di Hira Space dengan fokus pengembangan
+                        kecerdasan, kreativitas, dan kepemimpinan masa depan
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* Item 1 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-indigo-600 text-white grid place-items-center shrink-0 text-sm font-bold">
+                        1
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between gap-2 flex-wrap">
+                          <h4 className="font-semibold text-slate-900">
+                            🤖 AI Knowledge for Teens
+                          </h4>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold whitespace-nowrap">
+                            💰 Rp 750.000
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Belajar memanfaatkan AI & ChatGPT untuk belajar lebih
+                          efektif, cepat, dan produktif di dunia digital.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 2 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-indigo-600 text-white grid place-items-center shrink-0 text-sm font-bold">
+                        2
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between gap-2 flex-wrap">
+                          <h4 className="font-semibold text-slate-900">
+                            🎨 Creative Skill with Canva
+                          </h4>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold whitespace-nowrap">
+                            💰 Rp 600.000
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Desain presentasi, poster, dan konten profesional
+                          menggunakan Design Thinking.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 3 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-indigo-600 text-white grid place-items-center shrink-0 text-sm font-bold">
+                        3
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between gap-2 flex-wrap">
+                          <h4 className="font-semibold text-slate-900">
+                            � Public Speaking & Leadership
+                          </h4>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold whitespace-nowrap">
+                            💰 Rp 650.000
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Berani tampil di depan umum, menyampaikan ide kuat,
+                          dan memimpin tim kecil dengan percaya diri.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 4 */}
+                    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100">
+                      <div className="h-8 w-8 rounded-full bg-indigo-600 text-white grid place-items-center shrink-0 text-sm font-bold">
+                        4
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between gap-2 flex-wrap">
+                          <h4 className="font-semibold text-slate-900">
+                            💼 Entrepreneur Mindset
+                          </h4>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold whitespace-nowrap">
+                            💰 Rp 500.000
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-600 mt-1">
+                          Bangun proyek mini, belajar problem-solving nyata, dan
+                          memahami dasar wirausaha sejak remaja.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* TUGAS UTAMA AMBASSADOR */}
+      <section className="bg-gradient-to-br from-[#03345c]/5 to-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            🧭 Tugas Utama Ambassador
+          </h2>
+          <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
+            Sebagai Ambassador ZonaEnglish, kamu akan menjalankan misi penting
+            untuk membangun komunitas pembelajar bahasa Inggris di
+            sekolah/kampusmu.
+          </p>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {/* Task Card 1 */}
+            <div className="p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-xl">
+                  📣
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">
+                    Edukasi & Inspirasi
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Edukasi pentingnya Bahasa Inggris & Future Skills untuk masa
+                    depan yang lebih cerah.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Task Card 2 */}
+            <div className="p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center shrink-0 text-xl">
+                  💬
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">
+                    Brand Ambassador
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Perkenalkan ZonaEnglish & Hira Academy di sekolah/kampus
+                    sebagai solusi belajar terbaik.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Task Card 3 */}
+            <div className="p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-xl">
+                  🎟️
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">
+                    Referral Program
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Bagikan referral code — teman dapat voucher, kamu dapat
+                    reward menarik.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Task Card 4 */}
+            <div className="p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center shrink-0 text-xl">
+                  🎥
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">
+                    Content Creator
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Buat konten/aktivitas sederhana di sekolah untuk
+                    IG/TikTok/Mading.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PENGUMUMAN UTAMA */}
+      <section className="bg-gradient-to-br from-[#03345c]/5 to-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            📢 Pengumuman Utama
+          </h2>
+          <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
+            Jadilah Ambassador ZonaEnglish di sekolah/kampusmu. Setiap institusi
+            akan memilih 2–5 Ambassador terbaik.
+          </p>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {/* Left Column */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                  ✓
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-slate-900">
+                    2–5 Ambassador per sekolah/kampus
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-1">
+                    Setiap institusi akan memilih kandidat terbaik sebagai
+                    perwakilan resmi
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                  ⭐
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-slate-900">
+                    Program resmi ZonaEnglish
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-1">
+                    Sertifikat dan pengakuan resmi dari ZonaEnglish dan partner
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                  🏫
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-slate-900">
+                    Cek apakah sekolah/kampusmu sudah terdaftar
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-1">
+                    Pastikan institusimu terdaftar dalam program ini
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://zonaenglish.com/daftar-sekolah",
+                    "_blank"
+                  )
+                }
+                className="w-full flex items-center justify-between gap-3 p-4 rounded-2xl bg-[#03345c] text-white border border-[#03345c] shadow-sm hover:bg-[#03345c]/90 transition-all duration-300 group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                    📋
+                  </div>
+                  <div className="text-left">
+                    <h4 className="font-semibold text-white">
+                      Lihat Daftar Sekolah/Kampus
+                    </h4>
+                    <p className="text-sm text-white/80">
+                      Klik untuk melihat institusi yang terdaftar
+                    </p>
+                  </div>
+                </div>
+                <div className="text-[#fcd547] group-hover:translate-x-1 transition-transform">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DAFTAR SEKOLAH & KAMPUS */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            🏫 Daftar Sekolah & Kampus (Gelombang 1)
+          </h2>
+          <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
+            Institusi yang sudah terdaftar dalam program Ambassador ZonaEnglish
+            gelombang pertama.
+          </p>
+
+          <div className="mt-10 grid lg:grid-cols-2 gap-8">
+            {/* SMA/SMK Card */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center text-xl">
+                  🎓
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">SMA/SMK</h3>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-[#fcd547]"></div>
+                  <span className="text-slate-700 font-medium">
+                    SMAN 1 Makassar
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-[#fcd547]"></div>
+                  <span className="text-slate-700 font-medium">
+                    SMAN 2 Makassar
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-[#fcd547]"></div>
+                  <span className="text-slate-700 font-medium">
+                    SMKN 1 Makassar
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-slate-400"></div>
+                  <span className="text-slate-500 italic">
+                    — dan sekolah mitra lainnya
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Kampus Card */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center text-xl">
+                  🏛️
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">Kampus</h3>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-[#03345c]"></div>
+                  <span className="text-slate-700 font-medium">
+                    Universitas Hasanuddin
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-[#03345c]"></div>
+                  <span className="text-slate-700 font-medium">
+                    Universitas Negeri Makassar
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="h-2 w-2 rounded-full bg-slate-400"></div>
+                  <span className="text-slate-500 italic">
+                    — dan kampus mitra lainnya
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tombol Center */}
+          <div className="mt-10 text-center">
+            <button
+              onClick={() =>
+                window.open(
+                  "https://zonaenglish.com/ajukan-institusi",
+                  "_blank"
+                )
+              }
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#03345c] text-white font-semibold hover:bg-[#03345c]/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
+            >
+              <span className="text-xl">🏫</span>
+              <span>Ajukan Sekolah/Kampusmu</span>
+              <div className="text-[#fcd547] group-hover:translate-x-1 transition-transform">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* APPLY STEPS */}
+      <section
+        id="apply"
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+          Syarat & Cara Daftar
+        </h2>
+        <div className="mt-10 grid lg:grid-cols-2 gap-8 items-start">
+          <ol className="space-y-4">
+            <Step n={1} title="Siswa aktif SMP/SMA di Makassar" />
+            <Step
+              n={2}
+              title="Klik tombol 'Daftar Sekarang' dan isi formulir"
+            />
+            <Step
+              n={3}
+              title="Upload video: 'Why I Love Learning English' (maks. 60 detik)"
+            />
+            <Step n={4} title="Tunggu undangan Interview Day" />
+          </ol>
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="font-semibold text-slate-900">
+              QR Code Pendaftaran
+            </h3>
+            <div className="mt-4 aspect-square w-full rounded-2xl bg-slate-100 grid place-items-center">
+              <p className="text-slate-400 text-sm">
+                (Tempelkan QR menuju {APPLY_URL})
+              </p>
+            </div>
+            <button
+              onClick={() => setShowModal(true)}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#fcd547] px-6 py-3 text-slate-900 font-semibold shadow hover:shadow-lg transition-shadow"
+            >
+              Daftar Sekarang <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section id="testi" className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            Kata Mereka
+          </h2>
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            <TestiCard
+              name="Alya"
+              school="SMA 5 Makassar"
+              text="Gabung di ZonaEnglish bikin aku lebih percaya diri ngomong Inggris dan berani tampil di depan umum!"
+            />
+            <TestiCard
+              name="Rizky"
+              school="SMP 2 Makassar"
+              text="Aku belajar bukan cuma grammar, tapi juga leadership dan teamwork."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section id="faq" className="bg-sky-50/60">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
+            Pertanyaan yang Sering Ditanyakan
+          </h2>
+          <p className="mt-3 text-slate-600 text-center max-w-2xl mx-auto">
+            Ada pertanyaan? Cek dulu FAQ-nya, siapa tau jawabannya udah ada di
+            sini!
+          </p>
+
+          <div className="mt-10 space-y-4">
+            {/* FAQ-KE-1 */}
+            <FAQItem
+              question="Apa sih yang bakal aku dapetin kalau jadi Ambassador?"
+              answer="Kamu bakal dapat sertifikat resmi Youth Ambassador, pelatihan public speaking & leadership, merchandise eksklusif, peluang beasiswa dan magang, plus kesempatan tampil di Instagram ZonaEnglish! Keren kan?"
+            />
+
+            {/* FAQ-KE-2 */}
+            <FAQItem
+              question="Aku pemula banget di bahasa Inggris, boleh ikut nggak?"
+              answer="Tentu boleh! Program ini justru dirancang buat kamu yang mau berkembang. Yang penting kamu punya semangat belajar dan berani tampil. Kami akan support kamu dari awal!"
+            />
+
+            {/* FAQ-KE-3 */}
+            <FAQItem
+              question="Kalau jadwalnya bentrok sama sekolah gimana?"
+              answer="Tenang, kegiatan program ini fleksibel dan biasanya di luar jam sekolah (weekend atau sore hari). Kami paham kamu masih sekolah, jadi jadwalnya disesuaikan kok!"
+            />
+
+            {/* FAQ-KE-4 */}
+            <FAQItem
+              question="Apa aku harus bayar untuk ikut program ini?"
+              answer="Program Ambassador ini GRATIS! Kamu justru bakal dapat banyak benefit seperti sertifikat, merchandise, dan pelatihan tanpa biaya sepeserpun. Investasi terbaik buat masa depanmu!"
+            />
+
+            {/* FAQ-KE-5 */}
+            <FAQItem
+              question="Setelah daftar, prosesnya gimana?"
+              answer="Setelah daftar, kamu akan dapat undangan untuk Interview Day. Di sana kamu kenalan sama tim dan peserta lain, terus ikut games seru! Santai aja, ini bukan interview formal kok, lebih ke casual chat."
+            />
+
+            {/* FAQ-KE-6 */}
+            <FAQItem
+              question="Kalau dari luar Makassar bisa ikut nggak?"
+              answer="Untuk saat ini programnya khusus untuk siswa SMP/SMA yang bersekolah di Makassar ya. Tapi stay tuned, siapa tau nanti ekspansi ke kota lain!"
+            />
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="text-slate-600 mb-4">Masih ada pertanyaan lain?</p>
+            <button
+              onClick={openWhatsApp}
+              className="inline-flex items-center gap-2 rounded-2xl border border-green-200 bg-green-50 px-6 py-3 font-semibold text-green-700 hover:bg-green-100"
+            >
+              <MessageCircle size={18} /> Tanya via WhatsApp
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-slate-100 bg-gradient-to-b from-white to-sky-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-2 gap-6 items-center">
+          <div>
+            <p className="font-semibold text-slate-900">
+              ZonaEnglish Center — Hira Space, Makassar
+            </p>
+            <p className="text-sm text-slate-600 mt-1">
+              "You don't have to be perfect to start — you just have to start
+              speaking."
+            </p>
+          </div>
+          <div className="flex md:justify-end gap-3">
+            <button
+              onClick={() => setShowModal(true)}
+              className="inline-flex items-center gap-2 rounded-2xl bg-[#fcd547] px-5 py-2.5 text-slate-900 font-semibold shadow hover:shadow-lg transition-shadow"
+            >
+              Daftar Sekarang <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 text-xs text-slate-500">
+          © {new Date().getFullYear()} ZonaEnglish. All rights reserved.
+        </div>
+      </footer>
+
+      {/* FLOATING WHATSAPP BUTTON */}
+      <button
+        onClick={openWhatsApp}
+        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 flex items-center justify-center hover:scale-110 transition-transform"
+        aria-label="Chat via WhatsApp"
+      >
+        <MessageCircle size={24} />
+      </button>
+
+      {/* MODAL FORM */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-3xl">
+                <h3 className="text-xl font-bold text-slate-900">
+                  Pendaftaran Ambassador 2025
+                </h3>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="h-8 w-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Nama Lengkap <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="nama"
+                    value={formData.nama}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
+                    placeholder="Masukkan nama lengkap"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Alamat <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="alamat"
+                    value={formData.alamat}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
+                    placeholder="Masukkan alamat lengkap"
+                  />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                      Usia <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      name="usia"
+                      value={formData.usia}
+                      onChange={handleInputChange}
+                      required
+                      min="13"
+                      max="17"
+                      className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
+                      placeholder="13-17 tahun"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                      Jenis Kelamin <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      name="jenisKelamin"
+                      value={formData.jenisKelamin}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
+                    >
+                      <option value="">Pilih</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Sekolah <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="sekolah"
+                    value={formData.sekolah}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
+                    placeholder="Contoh: SMA Negeri 1 Makassar"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Akun Instagram <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+                      @
+                    </span>
+                    <input
+                      type="text"
+                      name="instagram"
+                      value={formData.instagram}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full pl-8 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
+                      placeholder="username"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Alasan Ingin Bergabung{" "}
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="alasan"
+                    value={formData.alasan}
+                    onChange={handleInputChange}
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition resize-none"
+                    placeholder="Ceritakan mengapa kamu ingin menjadi ZonaEnglish School Ambassador..."
+                  />
+                </div>
+
+                <div className="pt-4 flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                    className="flex-1 px-6 py-3 rounded-2xl border border-slate-200 font-semibold text-slate-700 hover:bg-slate-50"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#fcd547] font-semibold text-slate-900 shadow hover:shadow-lg transition-shadow"
+                  >
+                    <MessageCircle size={18} />
+                    Kirim ke WhatsApp
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function BenefitCard({
+  icon,
+  title,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div className="h-10 w-10 rounded-2xl bg-[#fcd547]/20 text-[#03345c] grid place-items-center">
+        {icon}
+      </div>
+      <h3 className="mt-4 font-semibold text-slate-900">{title}</h3>
+      <p className="text-sm text-slate-600 mt-1">{desc}</p>
+    </div>
+  );
+}
+
+function Step({ n, title }: { n: number; title: string }) {
+  return (
+    <li className="flex items-start gap-4">
+      <div className="mt-1 h-8 w-8 shrink-0 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center font-bold">
+        {n}
+      </div>
+      <p className="text-slate-700">{title}</p>
+    </li>
+  );
+}
+
+function TestiCard({
+  name,
+  school,
+  text,
+}: {
+  name: string;
+  school: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="flex items-center gap-3">
+        <div className="h-10 w-10 rounded-full bg-sky-200" />
+        <div>
+          <p className="font-semibold text-slate-900">{name}</p>
+          <p className="text-xs text-slate-500">{school}</p>
+        </div>
+      </div>
+      <p className="mt-3 text-slate-700 text-sm">"{text}"</p>
+    </div>
+  );
+}
+
+// FAQ Item Component with Accordion
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
+      >
+        <h3 className="font-semibold text-slate-900 pr-4">{question}</h3>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="shrink-0"
+        >
+          <ChevronDown size={20} className="text-sky-700" />
+        </motion.div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="px-6 pb-5 text-slate-600 text-sm leading-relaxed">
+              {answer}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default App;
