@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  Mic,
   BookOpen,
-  Smartphone,
   Award,
   Megaphone,
   Gift,
@@ -296,25 +294,6 @@ function App() {
                       className="w-full h-auto"
                       loading="lazy"
                     />
-                  </div>
-                  <div className="row-span-2 grid grid-cols-3 gap-3 mt-4">
-                    <div className="rounded-2xl bg-sky-50 border border-sky-100 p-3 flex flex-col items-center text-center">
-                      <Mic className="mb-2" />
-                      <p className="text-xs font-semibold">Public Speaking</p>
-                      <p className="text-[10px] text-slate-500">
-                        Latihan tampil
-                      </p>
-                    </div>
-                    <div className="rounded-2xl bg-indigo-50 border border-indigo-100 p-3 flex flex-col items-center text-center">
-                      <BookOpen className="mb-2" />
-                      <p className="text-xs font-semibold">Leadership</p>
-                      <p className="text-[10px] text-slate-500">Team project</p>
-                    </div>
-                    <div className="rounded-2xl bg-violet-50 border border-violet-100 p-3 flex flex-col items-center text-center">
-                      <Smartphone className="mb-2" />
-                      <p className="text-xs font-semibold">Content</p>
-                      <p className="text-[10px] text-slate-500">Vlog & IG</p>
-                    </div>
                   </div>
                   <div className="row-span-1 mt-4 flex items-center justify-between">
                     <div className="text-xs text-slate-500">
