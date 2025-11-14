@@ -39,6 +39,7 @@ interface FormData {
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showFloatingMenu, setShowFloatingMenu] = useState(false);
   const [selectedPremiumClass, setSelectedPremiumClass] = useState<
     "zonaenglish" | "hira"
   >("zonaenglish");
@@ -1263,14 +1264,100 @@ function App() {
         </div>
       </footer>
 
-      {/* FLOATING WHATSAPP BUTTON */}
-      <button
-        onClick={openWhatsApp}
-        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 flex items-center justify-center hover:scale-110 transition-transform"
-        aria-label="Chat via WhatsApp"
-      >
-        <MessageCircle size={24} />
-      </button>
+      {/* FLOATING REGISTRATION MENU */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {/* Menu Options */}
+        <AnimatePresence>
+          {showFloatingMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="absolute bottom-20 right-0 flex flex-col gap-3 mb-2"
+            >
+              {/* Daftar Ambassador SMP */}
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ delay: 0.1 }}
+                onClick={() => {
+                  setShowModal(true);
+                  setShowFloatingMenu(false);
+                }}
+                className="group flex items-center gap-3 bg-white hover:bg-sky-50 text-slate-900 px-4 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
+              >
+                <div className="h-10 w-10 rounded-xl bg-sky-500 text-white grid place-items-center shrink-0 group-hover:scale-110 transition-transform">
+                  🎓
+                </div>
+                <div className="text-left">
+                  <p className="font-bold text-sm">Ambassador SMP</p>
+                  <p className="text-xs text-slate-600">Usia 13-15 tahun</p>
+                </div>
+              </motion.button>
+
+              {/* Daftar Ambassador SMA */}
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ delay: 0.15 }}
+                onClick={() => {
+                  setShowModal(true);
+                  setShowFloatingMenu(false);
+                }}
+                className="group flex items-center gap-3 bg-white hover:bg-indigo-50 text-slate-900 px-4 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
+              >
+                <div className="h-10 w-10 rounded-xl bg-indigo-500 text-white grid place-items-center shrink-0 group-hover:scale-110 transition-transform">
+                  🏛️
+                </div>
+                <div className="text-left">
+                  <p className="font-bold text-sm">Ambassador SMA</p>
+                  <p className="text-xs text-slate-600">Usia 16-18 tahun</p>
+                </div>
+              </motion.button>
+
+              {/* Daftar Ambassador Mahasiswa */}
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ delay: 0.2 }}
+                onClick={() => {
+                  setShowModal(true);
+                  setShowFloatingMenu(false);
+                }}
+                className="group flex items-center gap-3 bg-white hover:bg-violet-50 text-slate-900 px-4 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
+              >
+                <div className="h-10 w-10 rounded-xl bg-violet-500 text-white grid place-items-center shrink-0 group-hover:scale-110 transition-transform">
+                  🎓
+                </div>
+                <div className="text-left">
+                  <p className="font-bold text-sm">Ambassador Mahasiswa</p>
+                  <p className="text-xs text-slate-600">Usia 19-25 tahun</p>
+                </div>
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main Toggle Button */}
+        <motion.button
+          onClick={() => setShowFloatingMenu(!showFloatingMenu)}
+          animate={{ rotate: showFloatingMenu ? 45 : 0 }}
+          className="h-16 w-16 rounded-full bg-gradient-to-br from-[#fcd547] to-[#03345c] text-white shadow-2xl hover:shadow-3xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+          aria-label="Pilih Jenis Pendaftaran Ambassador"
+        >
+          {showFloatingMenu ? (
+            <X size={28} className="font-bold" />
+          ) : (
+            <div className="flex flex-col items-center">
+              <ArrowRight size={24} className="-rotate-45" />
+              <span className="text-[10px] font-bold mt-0.5">DAFTAR</span>
+            </div>
+          )}
+        </motion.button>
+      </div>
 
       {/* MODAL FORM */}
       <AnimatePresence>
