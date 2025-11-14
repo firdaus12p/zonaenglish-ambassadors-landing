@@ -289,7 +289,7 @@ function App() {
                 <div className="w-full rounded-3xl bg-white p-5">
                   <div className="rounded-2xl overflow-hidden">
                     <img
-                      src="/Zona-English-Ambassador.png"
+                      src="/ambassador-photo.png"
                       alt="ZonaEnglish Ambassador - Students learning public speaking, leadership, and content creation"
                       className="w-full h-auto"
                       loading="lazy"
