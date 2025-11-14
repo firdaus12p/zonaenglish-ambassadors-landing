@@ -293,6 +293,7 @@ function App() {
                       src={ambassadorPhoto}
                       alt="ZonaEnglish Ambassador - Students learning public speaking, leadership, and content creation"
                       className="w-full h-auto"
+                      loading="lazy"
                     />
                   </div>
                   <div className="row-span-2 grid grid-cols-3 gap-3 mt-4">
@@ -381,7 +382,7 @@ function App() {
               <li className="flex items-center gap-3">
                 <MapPin size={18} className="text-sky-700" /> Lokasi:{" "}
                 <span className="font-semibold">
-                  ZonaEnglish Center, Makassar
+                  ZonaEnglish Center, Makassar - Kolaka
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -390,7 +391,7 @@ function App() {
               </li>
               <li className="flex items-center gap-3">
                 <Megaphone size={18} className="text-sky-700" /> Target: Siswa
-                SMP–SMA (13–17 tahun)
+                SMP, SMA, dan Kampus (13–25 tahun)
               </li>
             </ul>
             <button
@@ -734,11 +735,12 @@ function App() {
                           Hingga Rp 20.000.000 per tahun
                         </p>
                         <p className="text-sm text-slate-600 mt-1">
-                          Ambassador terpilih akan menjadi official
-                          representative ZonaEnglish untuk mengikuti event,
-                          workshop, dan lomba di berbagai level. Setiap
-                          partisipasi disertai dengan sertifikat resmi dari
-                          penyelenggara, ZonaEnglish, dan Hira Academy.
+                          Ambassador berkesempatan di pilih jadi duta Zona
+                          English untuk mengikuti event, workshop, dan lomba di
+                          berbagai level. Setiap partisipasi disertai dengan
+                          sertifikat resmi dari penyelenggara, ZonaEnglish, dan
+                          Hira Academy. Proses seleksi di pilih oleh tim
+                          internal Zona English.
                         </p>
                       </div>
                     </div>
@@ -957,8 +959,8 @@ function App() {
             📢 Pengumuman Utama
           </h2>
           <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
-            Jadilah Ambassador ZonaEnglish di sekolah/kampusmu. Setiap institusi
-            akan memilih 1–3 Ambassador terbaik.
+            Jadilah Ambassador ZonaEnglish di sekolah/kampusmu. Setiap
+            sekolah/kampus akan di pilih 1–3 Ambassador.
           </p>
 
           <div className="mt-10 grid md:grid-cols-2 gap-6">
@@ -973,8 +975,8 @@ function App() {
                     1–3 Ambassador per sekolah/kampus
                   </h4>
                   <p className="text-sm text-slate-600 mt-1">
-                    Setiap institusi akan memilih kandidat terbaik sebagai
-                    perwakilan resmi
+                    Setiap sekolah/kampus akan dipilih kandidat terbaik sebagai
+                    perwakilan resmi ZonaEnglish
                   </p>
                 </div>
               </div>
