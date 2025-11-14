@@ -20,7 +20,6 @@ import {
   ChevronDown,
 } from "lucide-react";
 import "./App.css";
-import ambassadorPhoto from "./assets/Zona-English-Ambassador.png";
 
 // URLs
 const IG_URL = "https://instagram.com/zonaenglish.id";
@@ -290,7 +289,7 @@ function App() {
                 <div className="w-full rounded-3xl bg-white p-5">
                   <div className="rounded-2xl overflow-hidden">
                     <img
-                      src={ambassadorPhoto}
+                      src="/Zona-English-Ambassador.png"
                       alt="ZonaEnglish Ambassador - Students learning public speaking, leadership, and content creation"
                       className="w-full h-auto"
                       loading="lazy"
