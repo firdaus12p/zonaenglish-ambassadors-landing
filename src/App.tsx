@@ -267,7 +267,8 @@ function App() {
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
               <div className="inline-flex items-center gap-2">
-                <CalendarClock size={16} /> Pendaftaran ditutup 25 Oktober 2025
+                <CalendarClock size={16} /> Pendaftaran 15 November s.d 15
+                Desember 2025
               </div>
               <div className="inline-flex items-center gap-2">
                 <MapPin size={16} /> Makassar
@@ -999,170 +1000,106 @@ function App() {
             <div className="space-y-4">
               <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
                 <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
-                  🏫
+                  📅
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-slate-900">
-                    Cek apakah sekolah/kampusmu sudah terdaftar
+                    Timeline Program
                   </h4>
                   <p className="text-sm text-slate-600 mt-1">
-                    Pastikan institusimu terdaftar dalam program ini
+                    Pendaftaran dibuka hingga 15 Desember 2025. Segera daftar!
                   </p>
                 </div>
               </div>
 
-              <button
-                onClick={() =>
-                  window.open(
-                    "https://zonaenglish.com/daftar-sekolah",
-                    "_blank"
-                  )
-                }
-                className="w-full flex items-center justify-between gap-3 p-4 rounded-2xl bg-[#03345c] text-white border border-[#03345c] shadow-sm hover:bg-[#03345c]/90 transition-all duration-300 group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
-                    📋
-                  </div>
-                  <div className="text-left">
-                    <h4 className="font-semibold text-white">
-                      Lihat Daftar Sekolah/Kampus
-                    </h4>
-                    <p className="text-sm text-white/80">
-                      Klik untuk melihat institusi yang terdaftar
-                    </p>
-                  </div>
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-[#fcd547] text-slate-900 grid place-items-center shrink-0 text-sm font-bold">
+                  💬
                 </div>
-                <div className="text-[#fcd547] group-hover:translate-x-1 transition-transform">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-slate-900">
+                    Butuh bantuan?
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-1">
+                    Hubungi kami via WhatsApp atau Instagram untuk info lebih
+                    lanjut
+                  </p>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* DAFTAR SEKOLAH & KAMPUS */}
+      {/* SIAPA YANG BISA DAFTAR */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">
-            🏫 Daftar Sekolah & Kampus (Gelombang 1)
+            🎯 Siapa yang Bisa Daftar?
           </h2>
           <p className="mt-3 text-slate-600 text-center max-w-3xl mx-auto">
-            Institusi yang sudah terdaftar dalam program Ambassador ZonaEnglish
-            gelombang pertama.
+            Program Ambassador ZonaEnglish terbuka untuk semua pelajar di
+            Makassar yang ingin berkembang!
           </p>
 
-          <div className="mt-10 grid lg:grid-cols-2 gap-8">
-            {/* SMA/SMK Card */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center text-xl">
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col items-center text-center">
+                <div className="h-16 w-16 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center text-3xl mb-4">
                   🎓
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">SMA/SMK</h3>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-[#fcd547]"></div>
-                  <span className="text-slate-700 font-medium">
-                    SMAN 1 Makassar
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-[#fcd547]"></div>
-                  <span className="text-slate-700 font-medium">
-                    SMAN 2 Makassar
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-[#fcd547]"></div>
-                  <span className="text-slate-700 font-medium">
-                    SMKN 1 Makassar
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-slate-400"></div>
-                  <span className="text-slate-500 italic">
-                    — dan sekolah mitra lainnya
-                  </span>
-                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  Siswa SMP & SMA
+                </h3>
+                <p className="text-slate-600">
+                  Pelajar aktif dari SMP/SMA di wilayah Makassar usia 13-17
+                  tahun
+                </p>
               </div>
             </div>
 
-            {/* Kampus Card */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-[#03345c] text-white grid place-items-center text-xl">
+            {/* Card 2 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#03345c]/5 to-white border border-[#03345c]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col items-center text-center">
+                <div className="h-16 w-16 rounded-2xl bg-[#03345c] text-white grid place-items-center text-3xl mb-4">
                   🏛️
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Kampus</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  Mahasiswa
+                </h3>
+                <p className="text-slate-600">
+                  Mahasiswa aktif dari berbagai kampus di Makassar usia 18-25
+                  tahun
+                </p>
               </div>
+            </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-[#03345c]"></div>
-                  <span className="text-slate-700 font-medium">
-                    Universitas Hasanuddin
-                  </span>
+            {/* Card 3 */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#fcd547]/10 to-white border border-[#fcd547]/20 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col items-center text-center">
+                <div className="h-16 w-16 rounded-2xl bg-[#fcd547] text-slate-900 grid place-items-center text-3xl mb-4">
+                  🌟
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-[#03345c]"></div>
-                  <span className="text-slate-700 font-medium">
-                    Universitas Negeri Makassar
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="h-2 w-2 rounded-full bg-slate-400"></div>
-                  <span className="text-slate-500 italic">
-                    — dan kampus mitra lainnya
-                  </span>
-                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  Semua Sekolah/Kampus
+                </h3>
+                <p className="text-slate-600">
+                  Terbuka untuk semua institusi pendidikan di Makassar tanpa
+                  terkecuali
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Tombol Center */}
+          {/* CTA Button */}
           <div className="mt-10 text-center">
             <button
-              onClick={() =>
-                window.open(
-                  "https://zonaenglish.com/ajukan-institusi",
-                  "_blank"
-                )
-              }
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#03345c] text-white font-semibold hover:bg-[#03345c]/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
+              onClick={() => setShowModal(true)}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#fcd547] text-slate-900 font-semibold hover:shadow-lg transition-all duration-300 shadow-md"
             >
-              <span className="text-xl">🏫</span>
-              <span>Ajukan Sekolah/Kampusmu</span>
-              <div className="text-[#fcd547] group-hover:translate-x-1 transition-transform">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
+              <span>Daftar Sekarang</span>
+              <ArrowRight size={20} />
             </button>
           </div>
         </div>
@@ -1196,7 +1133,7 @@ function App() {
           className="mt-10 max-w-5xl mx-auto"
         >
           <ol className="grid md:grid-cols-2 gap-6">
-            <Step n={1} title="Siswa aktif SMP/SMA di Makassar" />
+            <Step n={1} title="Siswa aktif SMP/SMA/Mahasiswa di Makassar" />
             <Step
               n={2}
               title="Klik tombol 'Daftar Sekarang' dan isi formulir"
